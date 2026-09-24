@@ -12,8 +12,8 @@ and other agents stop guessing about the endpoint.
 ## Before writing code that calls the API
 
 ```bash
-npx apimaster-cli check          # is the key good, and which source is it coming from
-npx apimaster-cli models --ids   # which model ids exist today
+npx @apimaster/cli check          # is the key good, and which source is it coming from
+npx @apimaster/cli models --ids   # which model ids exist today
 ```
 
 Do not use a model id that did not appear in that list.
@@ -47,7 +47,7 @@ env_key = "APIMASTER_API_KEY"
 wire_api = "chat"
 ```
 
-Or run `npx apimaster-cli use codex`.
+Or run `npx @apimaster/cli use codex`.
 
 ## When a request fails
 
@@ -57,4 +57,4 @@ Or run `npx apimaster-cli use codex`.
 | 404 | `/v1` on the Anthropic base, or missing from the OpenAI base |
 | 400 mentioning the Images API | A chat endpoint was called with an image model |
 | 408 on image generation | Lower the resolution or switch to async |
-| Hangs | `HTTP_PROXY` / VPN — run `npx apimaster-cli doctor` |
+| Hangs | `HTTP_PROXY` / VPN — run `npx @apimaster/cli doctor` |

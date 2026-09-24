@@ -22,17 +22,17 @@ if [ -z "${APIMASTER_API_KEY:-}" ]; then
 fi
 
 echo "==> verifying the key against ${BASE_URL}"
-npx --yes apimaster-cli check --base-url "$BASE_URL" --skip-chat || {
+npx --yes @apimaster/cli check --base-url "$BASE_URL" --skip-chat || {
   echo "Key check failed — not writing any config." >&2
   exit 1
 }
 
 echo "==> writing config for ${TOOL}"
-npx --yes apimaster-cli use "$TOOL" --base-url "$BASE_URL" --write
+npx --yes @apimaster/cli use "$TOOL" --base-url "$BASE_URL" --write
 
 echo "==> done. Verify with:"
 case "$TOOL" in
   claude-code) echo "    claude   # then /model claude-sonnet-4-6" ;;
   codex)       echo "    codex \"print hello\"" ;;
-  *)           echo "    npx apimaster-cli ping \$(npx apimaster-cli models --ids | head -1)" ;;
+  *)           echo "    npx @apimaster/cli ping \$(npx @apimaster/cli models --ids | head -1)" ;;
 esac

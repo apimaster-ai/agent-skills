@@ -13,14 +13,14 @@ requests to one are failing.
 Never guess the base URL, the model id or the key. Check:
 
 ```bash
-npx apimaster-cli check --json          # key + both protocol families, exit code tells you what broke
-npx apimaster-cli models --kind chat    # what this endpoint actually serves today
-npx apimaster-cli doctor                # environment, config files, proxies, clock skew
+npx @apimaster/cli check --json          # key + both protocol families, exit code tells you what broke
+npx @apimaster/cli models --kind chat    # what this endpoint actually serves today
+npx @apimaster/cli doctor                # environment, config files, proxies, clock skew
 ```
 
 Exit codes: `0` ok · `2` auth · `3` balance · `4` unreachable · `5` usage.
 
-If `apimaster-cli` is not available, use curl:
+If the `apimaster` CLI is not available, use curl:
 
 ```bash
 curl -s https://apimaster.ai/v1/models -H "Authorization: Bearer $APIMASTER_API_KEY" | head -c 400
@@ -40,9 +40,9 @@ A 404 from Claude Code is almost always `/v1` left on the end of `ANTHROPIC_BASE
 ## Configuring a tool
 
 ```bash
-npx apimaster-cli use                    # list tools
-npx apimaster-cli use claude-code --write
-npx apimaster-cli use codex
+npx @apimaster/cli use                    # list tools
+npx @apimaster/cli use claude-code --write
+npx @apimaster/cli use codex
 ```
 
 For Claude Code, the target is `~/.claude/settings.json`:
@@ -104,8 +104,8 @@ See `references/api-notes.md` for the full parameter tables.
 | 402 | Balance |
 | 408 on image generation | Lower resolution, or switch to the async endpoint |
 | 429 | Back off exponentially |
-| Works in one shell, not another | Two different keys — `apimaster-cli check` prints which source it used |
-| Hangs with no response | `HTTP_PROXY`/VPN intercepting TLS — `apimaster-cli doctor` reports these |
+| Works in one shell, not another | Two different keys — `npx @apimaster/cli check` prints which source it used |
+| Hangs with no response | `HTTP_PROXY`/VPN intercepting TLS — `npx @apimaster/cli doctor` reports these |
 
 ## Scripts in this skill
 
